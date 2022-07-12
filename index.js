@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
 
 
@@ -15,6 +16,7 @@ function logger2(req, res, next) {
 //MIDDELEWARE ADD
 app.use(logger);
 app.use(logger2);
+app.use(morgan('div'));
 
 
 app.listen(3000, function() {
