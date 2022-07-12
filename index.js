@@ -1,22 +1,10 @@
-const express = require('express');
-const app = express();
+var express = require('express');
+var app = express();
 
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
 
-function commonmw(req, res, next) {
-    console.log('commonmw');
-    next(new Error('error ouccered'));
-}
-
-function errormw(err, req, res, next) {
-    console.log(err.message);
-    next();
-}
-
-//MIDDELEWARE ADD
-app.use(commonmw);
-app.use(errormw);
-
-app.listen(3000, function() {
-    console.log('SERVER IS RUNNING ')
-})
-
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});
