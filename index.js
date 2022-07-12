@@ -10,7 +10,11 @@ var users = [
 app.use(morgan('dev'));
 
 app.get('/users', function (req, res) {
-  const limit = req.query.limit;
+  const limit = parseInt(req.query.limit, 10); // "2"
+  if (Number.isNaN(limit)) {
+    return res.status(400).end();
+  }
+
   res.json(users.slice(0, limit));
 });
 
