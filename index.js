@@ -1,23 +1,20 @@
 const express = require('express');
-const morgan = require('morgan');
 const app = express();
 
 
-function logger(req, res, next) {
-    console.log('i am logger');
-    next();
+function commonmw(req, res, next) {
+    console.log('commonmw');
+    next(new Error('error ouccered'));
 }
 
-function logger2(req, res, next) {
-    console.log('i am logger2');
+function errormw(err, req, res, next) {
+    console.log(err.message);
     next();
 }
 
 //MIDDELEWARE ADD
-app.use(logger);
-app.use(logger2);
-app.use(morgan('div'));
-
+app.use(commonmw);
+app.use(errormw);
 
 app.listen(3000, function() {
     console.log('SERVER IS RUNNING ')
