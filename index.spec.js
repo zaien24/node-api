@@ -30,8 +30,8 @@ describe('GET /users는', () => {
                 .expect(400)
                 .end(done);
         });
-    })    
-})
+    });    
+});
 
 describe('GET /users/1는', () => {
     describe('성공시', () => {
@@ -39,9 +39,9 @@ describe('GET /users/1는', () => {
             request(app)
                 .get('/users/1')
                 .end((err, res) => {
-                    res.body.shoud.have.property('id', 1);
+                    res.body.should.have.property('id', 1);
                     done();
                 });
-        })
-    })
-})
+        });
+    });
+});
