@@ -80,10 +80,12 @@ describe('GET /users/1', () => {
 describe('POST /users', () => {
     describe('성공시', () => {
         let body;
+        let name = 'daniel';
+
         before(done => {
             request(app)
                 .post('/users')
-                .send({name: 'daniel'})
+                .send({name})
                 .expect(201)
                 .end((err, res) => {
                     body = res.body;
@@ -94,7 +96,7 @@ describe('POST /users', () => {
             body.should.have.property('id');
         });
         it('입력한 name을 반환한다', () => {          
-            body.should.have.property('name', 'daniel');
+            body.should.have.property('name', name);
         });
     })
 })
