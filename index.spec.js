@@ -77,3 +77,14 @@ describe('GET /users/1', () => {
         })
     })
 });
+describe('POST /users', () => {
+    describe('성공시', () => {
+        it('201 생성코드를 반환한다', done => {
+            request(app)
+                .post('/users')
+                .send({name: 'daniel'})
+                .expect(201)
+                .end(done);
+        })
+    })
+})
