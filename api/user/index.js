@@ -1,5 +1,6 @@
 const express = require('express');
- const router = express.Router();
+const router = express.Router();
+const ctrl = require('./user.ctrl');
 
 //라우팅 
 var users = [
@@ -9,15 +10,7 @@ var users = [
 ];
 
 
-router.get('/', function (req, res) {
-    req.query.limit = req.query.limit || 10;
-    const limit = parseInt(req.query.limit, 10); // "2"
-    if (Number.isNaN(limit)) {
-      return res.status(400).end();
-    }
-  
-    res.json(users.slice(0, limit));
-  });
+router.get('/', ctrl.index);
   
   router.get('/:id', function(req, res) {
     const id = parseInt(req.params.id, 10);
