@@ -85,6 +85,12 @@ describe('POST /users', () => {
                 .send({name: 'daniel'})
                 .expect(201)
                 .end(done);
+        });
+        it('생성된 유저 객체를 반환한다', done => {
+            request(app)
+                .post('/users')
+                .send({name: 'daniel'});
         })
+
     })
 })
