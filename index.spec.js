@@ -59,7 +59,7 @@ describe('GET /users/1는', () => {
         });
     });
 });
-describe('GET /users/1', () => {
+describe('DELETE /users/1', () => {
     describe('성공시', () => {
         it('204를 응답한다', (done) => {
             request(app)
@@ -110,7 +110,7 @@ describe('POST /users', () => {
         it('name이 중복될 경우 409을 반환한다', done => {
             request(app)
                 .post('/users')
-                .send({name: 'alice'})
+                .send({name: 'daniel'})
                 .expect(409)
                 .end(done)
         });
