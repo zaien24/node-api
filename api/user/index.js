@@ -1,3 +1,6 @@
+const express = require('express');
+ const router = express.Router();
+
 //라우팅 
 var users = [
     {id: 1, name: 'alice'},
@@ -6,7 +9,7 @@ var users = [
 ];
 
 
-app.get('/users', function (req, res) {
+router.get('/', function (req, res) {
     req.query.limit = req.query.limit || 10;
     const limit = parseInt(req.query.limit, 10); // "2"
     if (Number.isNaN(limit)) {
@@ -16,7 +19,7 @@ app.get('/users', function (req, res) {
     res.json(users.slice(0, limit));
   });
   
-  app.get('/users/:id', function(req, res) {
+  router.get('/:id', function(req, res) {
     const id = parseInt(req.params.id, 10);
     if (Number.isNaN(id)) return res.status(400).end();
     const user = users.filter((user) => user.id === id)[0];
@@ -25,14 +28,14 @@ app.get('/users', function (req, res) {
     res.json(user);
   })
   
-  app.delete('/users/:id', (req, res) => {
+  router.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id, 10);
     if (Number.isNaN(id)) return res.status(400).end();
     users = users.filter(user => user.id !== id);
     res.status(204).end();
   });
   
-  app.post('/users', (req, res) => {
+  router.post('/', (req, res) => {
     const name = req.body.name;
     if (!name) return res.status(400).end();
   
@@ -45,7 +48,7 @@ app.get('/users', function (req, res) {
     res.status(201).json(user);
   })
   
-  app.put('/users/:id', (req, res) => {
+  router.put('/:id', (req, res) => {
     const id = parseInt(req.params.id, 10);
     if (Number.isNaN(id)) return res.status(400).end();
   
@@ -63,3 +66,5 @@ app.get('/users', function (req, res) {
   
     res.json(user);
   })
+
+  module.exports = router;
