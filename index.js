@@ -60,9 +60,12 @@ app.put('/users/:id', (req, res) => {
 
   if (!name) return res.status(400).end();
 
+  const isConflict = users.filter(user => user.name === name).length;
+  if  (isConflict) return res.status(409).end();
+
   const user = users.filter(user => user.id === id)[0];
   if (!user)  return res.status(404).end();
-  
+
   user.name = name;
 
   res.json(user);

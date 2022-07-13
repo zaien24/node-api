@@ -157,6 +157,5 @@ describe('PUT /users/:id', () => {
                 .expect(409)
                 .end(done);
         });
-
     })
 });
