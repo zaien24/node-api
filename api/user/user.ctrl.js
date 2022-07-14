@@ -8,9 +8,10 @@ const index = function (req, res) {
       return res.status(400).end();
     }
 
-    models.User.findAll({
-      limit: limit
-    })
+    models.User
+      .findAll({
+        limit: limit
+      })
       .then(users => {
         res.json(users);
       });
@@ -19,12 +20,14 @@ const index = function (req, res) {
   const show = function(req, res) {
     const id = parseInt(req.params.id, 10);
     if (Number.isNaN(id)) return res.status(400).end();
-    const user = users.filter((user) => user.id === id)[0];
-    console.log('users : ' + user);
-    if (!user) return res.status(404).end();
-    res.json(user);
-  }
 
+    models.User.findOne({
+      where: {id: id}
+    }).then(user => {
+      if (!user) return res.status(404).end();
+      res.json(user);
+    })    
+  }
 
   const destory = (req, res) => {
     const id = parseInt(req.params.id, 10);
