@@ -4,8 +4,8 @@ const app = require('../../index'); //or ../../
 const models = require('../../models');
 
 
-describe('GET /users는', () => {
-    describe.only('성공시', () => {
+describe.only('GET /users는', () => {
+    describe('성공시', () => {
         const users = [{name: 'alice'}, {name: 'bek'}, {name: 'chris'}];
         before(()=>models.sequelize.sync({force: true}));
         before(()=>models.User.bulkCreate(users));
