@@ -7,8 +7,11 @@ const index = function (req, res) {
     if (Number.isNaN(limit)) {
       return res.status(400).end();
     }
-  
-    res.json(users.slice(0, limit));
+
+    models.User.findAll({})
+      .then(users => {
+        res.json(users);
+      });
   };
 
   const show = function(req, res) {

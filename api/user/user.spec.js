@@ -1,10 +1,12 @@
 const request = require('supertest');
 const should = require('should');
 const app = require('../../index'); //or ../../
+const models = require('../../models');
 
 
 describe('GET /users는', () => {
     describe('성공시', () => {
+        before(()=>models.sequelize.sync({force: true}));
         it.only('유저 객체를 담은 배열로 응답한다 ', (done) => {
             request(app)
                 .get('/users')
