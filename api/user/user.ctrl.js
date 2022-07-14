@@ -1,9 +1,5 @@
 //api 로직
-var users = [
-    {id: 1, name: 'alice'},
-    {id: 2, name: 'bek'},
-    {id: 3, name: 'chris'}
-];
+const models = require('../../models');
 
 const index = function (req, res) {
     req.query.limit = req.query.limit || 10;
